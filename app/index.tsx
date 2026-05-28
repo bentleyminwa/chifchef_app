@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { COLORS } from "../constants/theme";
 
 export default function Index() {
   return (
@@ -15,11 +16,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.background,
   },
   text: {
     fontSize: 24,
     fontWeight: "bold",
+    color: COLORS.text,
   },
 });
 
