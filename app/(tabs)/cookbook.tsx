@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function RecipeHomeScreen() {
+export default function CookBookScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>RecipeHomeScreen</Text>
+      <Text>CookBookScreen</Text>
     </View>
   );
 }
@@ -13,8 +13,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontFamily: 'Quicksand-Bold',
   },
 });

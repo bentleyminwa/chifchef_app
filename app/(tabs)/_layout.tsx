@@ -1,35 +1,177 @@
+import { TABS_CONFIG } from '@/lib/config/tabs';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Tabs } from 'expo-router';
 import React from 'react';
+import {
+  Image,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  const insets = useSafeAreaInsets();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  // Calculate bottom position based on safe area insets
+  const bottomPosition =
+    Platform.OS === 'ios' ? Math.max(insets.bottom, 16) : 48;
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <View style={[styles.tabBarContainer, { bottom: bottomPosition }]}>
+      <View style={styles.tabBar}>
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+
+          const isFocused = state.index === index;
+
+          const onPress = () => {
+            const event = navigation.emit({
+              type: 'tabPress',
+              target: route.key,
+              canPreventDefault: true,
+            });
+
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name, route.params);
+            }
+          };
+
+          const onLongPress = () => {
+            navigation.emit({
+              type: 'tabLongPress',
+              target: route.key,
+            });
+          };
+
+          const tabConfig = TABS_CONFIG.find((t) => t.name === route.name);
+          if (!tabConfig) return null;
+
+          const iconColor = isFocused ? '#FE6F5E' : '#A0A0A5';
+          const textColor = isFocused ? '#FE6F5E' : '#A0A0A5';
+
+          return (
+            <Pressable
+              key={route.key}
+              accessibilityState={isFocused ? { selected: true } : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarButtonTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={({ pressed }) => [
+                styles.tabItem,
+                pressed && { transform: [{ scale: 0.94 }] },
+              ]}
+            >
+              <View style={[styles.iconContainer]}>
+                <Image
+                  source={tabConfig.icon}
+                  style={{
+                    width: 24,
+                    height: 24,
+                    tintColor: iconColor,
+                  }}
+                />
+              </View>
+              <Text
+                style={[
+                  styles.label,
+                  {
+                    color: textColor,
+                    fontFamily: isFocused
+                      ? 'Quicksand-Bold'
+                      : 'Quicksand-SemiBold',
+                  },
+                ]}
+              >
+                {tabConfig.title}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
   );
 }
+
+const TabsLayout = () => {
+  return (
+    <Tabs
+      tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      {TABS_CONFIG.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            title: tab.title,
+          }}
+        />
+      ))}
+    </Tabs>
+  );
+};
+
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    elevation: 8,
+    zIndex: 1000,
+  },
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: '#1d1d1d',
+    borderRadius: 50,
+    paddingHorizontal: 8,
+    paddingVertical: 10,
+    width: '85%',
+    maxWidth: 420,
+    height: 72,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    borderWidth: 1,
+    borderColor: '#2C2C2E',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.7,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  tabItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  iconContainer: {
+    width: 48,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      web: {
+        transition: 'background-color 0.2s ease, transform 0.1s ease',
+      } as any,
+    }),
+  },
+  label: {
+    fontSize: 11,
+    ...Platform.select({
+      web: {
+        transition: 'color 0.2s ease',
+      } as any,
+    }),
+  },
+});
+
+export default TabsLayout;
