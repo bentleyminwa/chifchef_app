@@ -11,23 +11,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
-  const insets = useSafeAreaInsets();
-
-  // Calculate bottom position based on safe area insets
-  const bottomPosition =
-    Platform.OS === 'ios' ? Math.max(insets.bottom, 16) : 0;
-
   return (
-    <SafeAreaView
-      edges={['bottom']}
-      style={[styles.tabBarContainer, { bottom: bottomPosition }]}
-    >
+    <SafeAreaView edges={['bottom']} style={[styles.tabBarContainer]}>
       <View style={styles.tabBar}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
@@ -127,6 +115,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+    bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
