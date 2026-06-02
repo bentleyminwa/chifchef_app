@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { COLORS, FONTS } from '@/lib/config/theme';
+import { StyleSheet, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function RecipeHomeScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>RecipeHomeScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -13,8 +15,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: COLORS.background,
   },
   text: {
-    fontFamily: 'Quicksand-Bold',
+    fontFamily: FONTS.sandBold,
+    color: COLORS.text,
   },
 });

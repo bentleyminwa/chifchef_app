@@ -1,4 +1,5 @@
 import { TABS_CONFIG } from '@/lib/config/tabs';
+import { COLORS, FONTS } from '@/lib/config/theme';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Tabs } from 'expo-router';
 import React from 'react';
@@ -10,17 +11,11 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
-  const insets = useSafeAreaInsets();
-
-  // Calculate bottom position based on safe area insets
-  const bottomPosition =
-    Platform.OS === 'ios' ? Math.max(insets.bottom, 16) : 48;
-
   return (
-    <View style={[styles.tabBarContainer, { bottom: bottomPosition }]}>
+    <SafeAreaView edges={['bottom']} style={[styles.tabBarContainer]}>
       <View style={styles.tabBar}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
@@ -49,8 +44,8 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           const tabConfig = TABS_CONFIG.find((t) => t.name === route.name);
           if (!tabConfig) return null;
 
-          const iconColor = isFocused ? '#FE6F5E' : '#A0A0A5';
-          const textColor = isFocused ? '#FE6F5E' : '#A0A0A5';
+          const iconColor = isFocused ? COLORS.primary : COLORS.primaryLight;
+          const textColor = isFocused ? COLORS.primary : COLORS.primaryLight;
 
           return (
             <Pressable
@@ -80,9 +75,7 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
                   styles.label,
                   {
                     color: textColor,
-                    fontFamily: isFocused
-                      ? 'Quicksand-Bold'
-                      : 'Quicksand-SemiBold',
+                    fontFamily: isFocused ? FONTS.sandBold : FONTS.sandSemiBold,
                   },
                 ]}
               >
@@ -92,7 +85,7 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           );
         })}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -122,6 +115,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
+    bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
@@ -130,7 +124,7 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: '#1d1d1d',
+    backgroundColor: COLORS.backgroundDark,
     borderRadius: 50,
     paddingHorizontal: 8,
     paddingVertical: 10,
@@ -140,8 +134,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     borderWidth: 1,
-    borderColor: '#2C2C2E',
-    shadowColor: '#000',
+    borderColor: COLORS.borderDark,
+    shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.7,
     shadowRadius: 20,
