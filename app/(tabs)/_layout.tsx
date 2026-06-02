@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   return (
-    <SafeAreaView edges={['bottom']} style={[styles.tabBarContainer]}>
+    <SafeAreaView edges={['bottom']} style={styles.tabBarContainer}>
       <View style={styles.tabBar}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
@@ -112,15 +112,10 @@ const TabsLayout = () => {
 
 const styles = StyleSheet.create({
   tabBarContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
+    backgroundColor: COLORS.background,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent',
-    elevation: 8,
-    zIndex: 1000,
+    paddingBottom: 8,
   },
   tabBar: {
     flexDirection: 'row',
