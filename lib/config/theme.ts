@@ -11,13 +11,19 @@ export const COLORS = {
   background: '#FFF8E7',
   backgroundDark: '#1d1d1d',
   text: '#1B1B1B',
+  textMuted: '#444444',
+  textLight: '#666666',
   white: '#ffffff',
   black: '#000000',
   gray: '#808080',
   grayLight: '#d3d3d3',
   grayDark: '#696969',
   border: '#e0e0e0',
+  borderLight: '#F0ECE4',
   borderDark: '#2C2C2E',
+  placeholder: '#A0A0A5',
+  avatarBg: '#E2F2ED',
+  avatarBorder: '#D0EBE3',
 };
 
 export const FONTS = {
