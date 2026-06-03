@@ -1,4 +1,5 @@
 import KitchenHeader from '@/features/kitchen/components/sections/KitchenHeader';
+import CategoriesSection from '@/features/kitchen/components/sections/CategoriesSection';
 import SearchBar from '@/features/kitchen/components/ui/SearchBar';
 import { COLORS } from '@/lib/config/theme';
 import { StatusBar } from 'expo-status-bar';
@@ -11,7 +12,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function RecipeHomeScreen() {
+export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -22,9 +23,9 @@ export default function RecipeHomeScreen() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <StatusBar style='light' backgroundColor={COLORS.backgroundDark} />
+        <StatusBar style='dark' />
 
-        {/* Dark Top Panel */}
+        {/* Top Panel (now light) */}
         <View style={[styles.topPanel, { paddingTop: insets.top + 16 }]}>
           <KitchenHeader />
 
@@ -35,6 +36,9 @@ export default function RecipeHomeScreen() {
             style={styles.searchBar}
           />
         </View>
+
+        {/* category list */}
+        <CategoriesSection />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -46,14 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   topPanel: {
-    backgroundColor: COLORS.backgroundDark,
     paddingHorizontal: 20,
     paddingBottom: 24,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 6,
   },
   searchBar: {
     marginVertical: 0,
