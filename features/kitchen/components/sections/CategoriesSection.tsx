@@ -41,7 +41,7 @@ const CategoriesSection = () => {
   return (
     <View style={styles.categorySection}>
       <View style={styles.categoryHeader}>
-        <Text style={styles.categoryTitle}>What&apos;s on the menu?</Text>
+        <Text style={styles.categoryTitle}>Explore Meals</Text>
       </View>
 
       <ScrollView
@@ -130,16 +130,16 @@ const styles = StyleSheet.create({
     width: ICON_CONTAINER_SIZE,
     height: ICON_CONTAINER_SIZE,
     borderRadius: 18,
-    backgroundColor: COLORS.borderLight,
+    backgroundColor: COLORS.card,
     borderColor: COLORS.borderLight,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 1 },
+    shadowColor: COLORS.gray,
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   categoryIcon: {
     width: 32,
