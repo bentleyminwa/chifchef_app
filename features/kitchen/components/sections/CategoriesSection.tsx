@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   categoryTitle: {
-    fontFamily: FONTS.sandSemiBold,
-    fontSize: 22,
+    fontFamily: FONTS.sandBold,
+    fontSize: 20,
     color: COLORS.text,
   },
   categoriesScroll: {
