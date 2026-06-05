@@ -25,6 +25,9 @@ export const COLORS = {
   placeholder: '#A0A0A5',
   avatarBg: '#E2F2ED',
   avatarBorder: '#D0EBE3',
+  success: '#50C878',
+  warning: '#F8DE7E',
+  danger: '#ED2939',
 };
 
 export const FONTS = {

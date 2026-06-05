@@ -32,14 +32,14 @@ const styles = StyleSheet.create({
   greeting: {
     fontFamily: FONTS.sandMedium,
     fontSize: 15,
-    color: COLORS.textLight,
+    color: COLORS.textMuted,
     marginBottom: 4,
   },
   title: {
     fontFamily: FONTS.sandBold,
     fontSize: 26,
     lineHeight: 32,
-    color: COLORS.textMuted,
+    color: COLORS.text,
   },
   avatarContainer: {
     width: 52,

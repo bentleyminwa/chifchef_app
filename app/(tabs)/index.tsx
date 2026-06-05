@@ -1,19 +1,14 @@
-import KitchenHeader from '@/features/kitchen/components/sections/KitchenHeader';
 import CategoriesSection from '@/features/kitchen/components/sections/CategoriesSection';
+import KitchenHeader from '@/features/kitchen/components/sections/KitchenHeader';
+import RecommendedSection from '@/features/kitchen/components/sections/Recommended';
 import SearchBar from '@/features/kitchen/components/ui/SearchBar';
 import { COLORS } from '@/lib/config/theme';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import {
-  Keyboard,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-  const insets = useSafeAreaInsets();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleFilterPress = () => {
@@ -21,26 +16,25 @@ export default function HomeScreen() {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <StatusBar style='dark' />
+    <SafeAreaView style={styles.container}>
+      <StatusBar style='dark' />
 
-        {/* Top Panel (now light) */}
-        <View style={[styles.topPanel, { paddingTop: insets.top + 16 }]}>
-          <KitchenHeader />
+      {/* Top Panel (now light) */}
+      <View style={[styles.topPanel]}>
+        <KitchenHeader />
 
-          <SearchBar
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            onFilterPress={handleFilterPress}
-            style={styles.searchBar}
-          />
-        </View>
-
-        {/* category list */}
-        <CategoriesSection />
+        <SearchBar
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onFilterPress={handleFilterPress}
+          style={styles.searchBar}
+        />
       </View>
-    </TouchableWithoutFeedback>
+
+      <CategoriesSection />
+
+      <RecommendedSection />
+    </SafeAreaView>
   );
 }
 
