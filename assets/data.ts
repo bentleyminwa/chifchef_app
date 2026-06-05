@@ -65,7 +65,7 @@ export const RECOMMENDED_RECIPES: RecommendedRecipe[] = [
     cook_time_minutes: 30,
     servings: 4,
     image_url: food1,
-    difficulty: 'Medium',
+    difficulty: 'Hard',
     meal_type: 'dinner',
   },
   {
