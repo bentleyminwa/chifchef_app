@@ -36,60 +36,61 @@ export default function PantryScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style='dark' backgroundColor={COLORS.background} />
-
-      {/* Pantry SearchIcon and NotificationIcon */}
-      <View style={[styles.topPanel]}>
-        <View style={styles.topPanelIcons}>
-          <Feather name='search' size={24} color={COLORS.textLight} />
-          <Feather name='bell' size={24} color={COLORS.textLight} />
-        </View>
-
-        {/* Header */}
-        <View style={styles.pantryHeader}>
-          <Text style={styles.pantryHeaderText}>Pantry</Text>
-          <FontAwesome6 name='sliders' size={24} color={COLORS.textLight} />
-        </View>
-
-        {/* Scrollable filter for storage of pantry ingredients(All, Fridge, Freezer, Dry Pantry, etc.) */}
-        <View style={styles.storageFilterContainer}>
-          {STORAGE_FILTER.map((filter) => (
-            <TouchableOpacity
-              key={filter.value}
-              style={[
-                styles.storageFilter,
-                activeStorage.value === filter.value && styles.activeStorage,
-              ]}
-              onPress={() => setActiveStorage(filter)}
-            >
-              <Text
-                style={[
-                  styles.storageFilterText,
-                  activeStorage.value === filter.value &&
-                    styles.activeStorageText,
-                ]}
-              >
-                {filter.label}
-              </Text>
-              {/* should display count of items in the current storage. It should be dynamic based on the filter. If active storage is 'all', it should display the total count of all items */}
-              <View style={[styles.storageFilterCount]}>
-                <Text
-                  style={[
-                    styles.storageFilterCountText,
-                    activeStorage.value === filter.value &&
-                      styles.activeStorageCountText,
-                  ]}
-                >
-                  {getStorageCount(filter.value)}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
+      <StatusBar style='dark' />
 
       {/* Scrollable list of pantry ingredients - image, name, quantity, expires in x days, storage location, date added, category*/}
       <FlatList
+        ListHeaderComponent={
+          <View style={[styles.topPanel]}>
+            <View style={styles.topPanelIcons}>
+              <Feather name='search' size={24} color={COLORS.textLight} />
+              <Feather name='bell' size={24} color={COLORS.textLight} />
+            </View>
+
+            {/* Header */}
+            <View style={styles.pantryHeader}>
+              <Text style={styles.pantryHeaderText}>Pantry</Text>
+              <FontAwesome6 name='sliders' size={24} color={COLORS.textLight} />
+            </View>
+
+            {/* Scrollable filter for storage of pantry ingredients(All, Fridge, Freezer, Dry Pantry, etc.) */}
+            <View style={styles.storageFilterContainer}>
+              {STORAGE_FILTER.map((filter) => (
+                <TouchableOpacity
+                  key={filter.value}
+                  style={[
+                    styles.storageFilter,
+                    activeStorage.value === filter.value &&
+                      styles.activeStorage,
+                  ]}
+                  onPress={() => setActiveStorage(filter)}
+                >
+                  <Text
+                    style={[
+                      styles.storageFilterText,
+                      activeStorage.value === filter.value &&
+                        styles.activeStorageText,
+                    ]}
+                  >
+                    {filter.label}
+                  </Text>
+                  {/* should display count of items in the current storage. It should be dynamic based on the filter. If active storage is 'all', it should display the total count of all items */}
+                  <View style={[styles.storageFilterCount]}>
+                    <Text
+                      style={[
+                        styles.storageFilterCountText,
+                        activeStorage.value === filter.value &&
+                          styles.activeStorageCountText,
+                      ]}
+                    >
+                      {getStorageCount(filter.value)}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        }
         data={filteredPantryItems}
         renderItem={({ item }) => {
           return (
@@ -116,8 +117,14 @@ export default function PantryScreen() {
         }}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.pantryList}
+        style={styles.pantryList}
+        contentContainerStyle={{ paddingHorizontal: 20 }}
       />
+
+      {/* Floating action button to add new pantry item */}
+      <TouchableOpacity style={styles.fab} onPress={() => {}}>
+        <Feather name='plus' size={24} color={COLORS.white} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -128,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   topPanel: {
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     paddingVertical: 8,
   },
   topPanelIcons: {
@@ -191,7 +198,6 @@ const styles = StyleSheet.create({
   },
   pantryList: {
     flex: 1,
-    paddingHorizontal: 20,
   },
   pantryItem: {
     flexDirection: 'row',
@@ -243,5 +249,18 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: FONTS.sandSemiBold,
     color: COLORS.textLight,
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: COLORS.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 100,
+    elevation: 5,
   },
 });

@@ -17,10 +17,14 @@ import food3 from '@/assets/images/recipes/food3.jpg';
 import food4 from '@/assets/images/recipes/food4.jpg';
 
 import bread from '@/assets/images/ingredients/bread.png';
+import cabbage from '@/assets/images/ingredients/cabbage.png';
 import chicken from '@/assets/images/ingredients/chicken.png';
 import eggs from '@/assets/images/ingredients/eggs.png';
+import beef from '@/assets/images/ingredients/meat.png';
 import milk from '@/assets/images/ingredients/milk-bottle.png';
+import onion from '@/assets/images/ingredients/onion.png';
 import rice from '@/assets/images/ingredients/rice.png';
+import tomato from '@/assets/images/ingredients/tomato.png';
 
 import type { PANTRYITEM, STORAGEFILTER } from '@/features/pantry/types';
 
@@ -173,5 +177,45 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     storage: 'dry',
     created_at: '2026-06-05',
     category: 'Grains',
+  },
+  {
+    id: '6',
+    name: 'Beef',
+    quantity: '500g',
+    image_url: beef,
+    expiration_date: '2026-06-15',
+    storage: 'freezer',
+    created_at: '2026-06-07',
+    category: 'Meat',
+  },
+  {
+    id: '7',
+    name: 'Tomato',
+    quantity: '3',
+    image_url: tomato,
+    expiration_date: '2026-06-10',
+    storage: 'fridge',
+    created_at: '2026-06-07',
+    category: 'Vegetable',
+  },
+  {
+    id: '8',
+    name: 'Onion',
+    quantity: '2',
+    image_url: onion,
+    expiration_date: '2026-06-15',
+    storage: 'dry',
+    created_at: '2026-06-07',
+    category: 'Vegetable',
+  },
+  {
+    id: '9',
+    name: 'Cabbage',
+    quantity: '1',
+    image_url: cabbage,
+    expiration_date: '2026-06-12',
+    storage: 'fridge',
+    created_at: '2026-06-07',
+    category: 'Vegetable',
   },
 ];
