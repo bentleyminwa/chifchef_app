@@ -16,6 +16,20 @@ import { PANTRY_ITEMS, STORAGE_FILTER } from '../../assets/data';
 export default function PantryScreen() {
   const [activeStorage, setActiveStorage] = useState<string>('all');
 
+  const filteredPantryItems = PANTRY_ITEMS.filter((item) => {
+    if (activeStorage === 'all') {
+      return true;
+    }
+    return item.storage === activeStorage;
+  });
+
+  const getStorageCount = (storage: string) => {
+    if (storage === 'all') {
+      return PANTRY_ITEMS.length;
+    }
+    return PANTRY_ITEMS.filter((item) => item.storage === storage).length;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style='dark' backgroundColor={COLORS.background} />
@@ -52,6 +66,7 @@ export default function PantryScreen() {
               >
                 {filter.label}
               </Text>
+              {/* should display count of items in the current storage. It should be dynamic based on the filter. If active storage is 'all', it should display the total count of all items */}
               <View style={[styles.storageFilterCount]}>
                 <Text
                   style={[
@@ -60,7 +75,7 @@ export default function PantryScreen() {
                       styles.activeStorageCountText,
                   ]}
                 >
-                  {filter.count}
+                  {getStorageCount(filter.value)}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -70,7 +85,7 @@ export default function PantryScreen() {
 
       {/* Scrollable list of pantry ingredients - image, name, quantity, expires in x days, storage location, date added, category*/}
       <FlatList
-        data={PANTRY_ITEMS}
+        data={filteredPantryItems}
         renderItem={({ item }) => {
           return (
             <View style={styles.pantryItem}>

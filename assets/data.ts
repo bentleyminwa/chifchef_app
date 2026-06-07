@@ -118,14 +118,13 @@ type StorageType = 'Fridge' | 'Freezer' | 'Dry Pantry';
 interface STORAGEFILTER {
   label: string;
   value: StorageType | 'all';
-  count: number;
 }
 
 export const STORAGE_FILTER: STORAGEFILTER[] = [
-  { label: 'All', value: 'all', count: 21 },
-  { label: 'Fridge', value: 'Fridge', count: 14 },
-  { label: 'Freezer', value: 'Freezer', count: 7 },
-  { label: 'Dry Pantry', value: 'Dry Pantry', count: 0 },
+  { label: 'All', value: 'all' },
+  { label: 'Fridge', value: 'Fridge' },
+  { label: 'Freezer', value: 'Freezer' },
+  { label: 'Dry Pantry', value: 'Dry Pantry' },
 ];
 
 type PANTRYITEM = {
