@@ -17,9 +17,8 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style='dark' />
+      <StatusBar style='dark' backgroundColor={COLORS.background} />
 
-      {/* Top Panel (now light) */}
       <View style={[styles.topPanel]}>
         <KitchenHeader />
 
