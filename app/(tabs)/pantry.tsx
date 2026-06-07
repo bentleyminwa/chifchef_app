@@ -1,3 +1,4 @@
+import type { STORAGEFILTER } from '@/features/pantry/types';
 import { COLORS, FONTS } from '@/lib/config/theme';
 import { Feather, FontAwesome6 } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
@@ -14,13 +15,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PANTRY_ITEMS, STORAGE_FILTER } from '../../assets/data';
 
 export default function PantryScreen() {
-  const [activeStorage, setActiveStorage] = useState<string>('all');
+  const [activeStorage, setActiveStorage] = useState<STORAGEFILTER>({
+    label: 'All',
+    value: 'all',
+  });
 
   const filteredPantryItems = PANTRY_ITEMS.filter((item) => {
-    if (activeStorage === 'all') {
+    if (activeStorage.value === 'all') {
       return true;
     }
-    return item.storage === activeStorage;
+    return item.storage === activeStorage.value;
   });
 
   const getStorageCount = (storage: string) => {
@@ -54,14 +58,15 @@ export default function PantryScreen() {
               key={filter.value}
               style={[
                 styles.storageFilter,
-                activeStorage === filter.value && styles.activeStorage,
+                activeStorage.value === filter.value && styles.activeStorage,
               ]}
-              onPress={() => setActiveStorage(filter.value)}
+              onPress={() => setActiveStorage(filter)}
             >
               <Text
                 style={[
                   styles.storageFilterText,
-                  activeStorage === filter.value && styles.activeStorageText,
+                  activeStorage.value === filter.value &&
+                    styles.activeStorageText,
                 ]}
               >
                 {filter.label}
@@ -71,7 +76,7 @@ export default function PantryScreen() {
                 <Text
                   style={[
                     styles.storageFilterCountText,
-                    activeStorage === filter.value &&
+                    activeStorage.value === filter.value &&
                       styles.activeStorageCountText,
                   ]}
                 >

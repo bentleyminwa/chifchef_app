@@ -22,6 +22,8 @@ import eggs from '@/assets/images/ingredients/eggs.png';
 import milk from '@/assets/images/ingredients/milk-bottle.png';
 import rice from '@/assets/images/ingredients/rice.png';
 
+import type { PANTRYITEM, STORAGEFILTER } from '@/features/pantry/types';
+
 export const TAB_ICONS = {
   home,
   refrigerator,
@@ -113,30 +115,13 @@ export const RECOMMENDED_RECIPES: RecommendedRecipe[] = [
 ];
 
 // PANTRY SPECIFIC DATA
-type StorageType = 'Fridge' | 'Freezer' | 'Dry Pantry';
-
-interface STORAGEFILTER {
-  label: string;
-  value: StorageType | 'all';
-}
 
 export const STORAGE_FILTER: STORAGEFILTER[] = [
   { label: 'All', value: 'all' },
-  { label: 'Fridge', value: 'Fridge' },
-  { label: 'Freezer', value: 'Freezer' },
-  { label: 'Dry Pantry', value: 'Dry Pantry' },
+  { label: 'Fridge', value: 'fridge' },
+  { label: 'Freezer', value: 'freezer' },
+  { label: 'Dry Pantry', value: 'dry' },
 ];
-
-type PANTRYITEM = {
-  id: string;
-  name: string;
-  quantity: string;
-  image_url: ImageSourcePropType;
-  expiration_date: string;
-  storage: StorageType;
-  created_at: string;
-  category: string;
-};
 
 export const PANTRY_ITEMS: PANTRYITEM[] = [
   {
@@ -145,7 +130,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     quantity: '1 L',
     image_url: milk,
     expiration_date: '2026-06-13',
-    storage: 'Fridge',
+    storage: 'fridge',
     created_at: '2026-06-01',
     category: 'Dairy',
   },
@@ -155,7 +140,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     quantity: '12',
     image_url: eggs,
     expiration_date: '2026-06-20',
-    storage: 'Fridge',
+    storage: 'fridge',
     created_at: '2026-06-05',
     category: 'Dairy',
   },
@@ -165,7 +150,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     quantity: '5 slices',
     image_url: bread,
     expiration_date: '2026-06-08',
-    storage: 'Dry Pantry',
+    storage: 'dry',
     created_at: '2026-06-05',
     category: 'Bakery',
   },
@@ -175,7 +160,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     quantity: '2 kg',
     image_url: chicken,
     expiration_date: '2026-06-10',
-    storage: 'Freezer',
+    storage: 'freezer',
     created_at: '2026-06-05',
     category: 'Meat',
   },
@@ -185,7 +170,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     quantity: '1 kg',
     image_url: rice,
     expiration_date: '2026-12-31',
-    storage: 'Dry Pantry',
+    storage: 'dry',
     created_at: '2026-06-05',
     category: 'Grains',
   },
