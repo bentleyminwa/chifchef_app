@@ -38,7 +38,7 @@ export default function PantryScreen() {
         // stickyHeaderIndices={[1]}
         ListHeaderComponent={
           <>
-            <PantryHeader key='pantry-header' />,
+            <PantryHeader key='pantry-header' />
             <StorageFilter
               key='storage-filter'
               activeStorage={activeStorage}
