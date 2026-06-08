@@ -2,13 +2,8 @@ import { COLORS, FONTS } from '@/lib/config/theme';
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import type { Recipe } from '../../types';
+import type { IngredientsMatch, Recipe } from '../../types';
 import DifficultyBadge from './DifficultyBadge';
-
-interface IngredientsMatch {
-  matched: number;
-  total: number;
-}
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -22,7 +17,12 @@ const RecipeCard = ({ recipe, ingredientsMatch, onPress }: RecipeCardProps) => {
       <View style={styles.card}>
         <View style={styles.imageContainer}>
           <Image source={recipe.image_url} style={styles.image} />
-          <Octicons name='heart' size={24} color={COLORS.primary} />
+          <Octicons
+            name='heart'
+            size={16}
+            color={COLORS.text}
+            style={styles.heartIcon}
+          />
         </View>
 
         <View style={styles.infoContainer}>
@@ -69,6 +69,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+  },
+  heartIcon: {
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    zIndex: 10,
+    elevation: 10,
+    backgroundColor: COLORS.grayLight,
+    padding: 4,
+    borderRadius: 12,
   },
   infoContainer: {
     flex: 1,

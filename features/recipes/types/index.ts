@@ -10,6 +10,11 @@ export type MealType =
   | 'snacks'
   | 'smoothie';
 
+export interface IngredientsMatch {
+  matched: number;
+  total: number;
+}
+
 export interface Recipe {
   id: string;
   title: string;
@@ -21,4 +26,5 @@ export interface Recipe {
   image_url: ImageSourcePropType;
   difficulty: Difficulty;
   meal_type: MealType;
+  ingredients: string[];
 }

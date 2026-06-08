@@ -4,7 +4,7 @@ import PantryItemDetailsScreen from '@/features/pantry/screens/PantryItemDetails
 import { useLocalSearchParams } from 'expo-router';
 
 export default function PantryItemDetailRoute() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id } = useLocalSearchParams();
   const item = usePantryItem(id);
 
   if (!item) return <PantryItemNotFound />;

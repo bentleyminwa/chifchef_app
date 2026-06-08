@@ -1,3 +1,4 @@
+import { PANTRY_ITEMS } from '@/assets/data';
 import PantryHeader from '@/features/pantry/components/sections/PantryHeader';
 import PantryItem from '@/features/pantry/components/sections/PantryItem';
 import StorageFilter from '@/features/pantry/components/sections/StorageFilter';
@@ -9,7 +10,6 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PANTRY_ITEMS } from '@/assets/data';
 
 export default function PantryScreen() {
   const [activeStorage, setActiveStorage] = useState<STORAGEFILTER>({

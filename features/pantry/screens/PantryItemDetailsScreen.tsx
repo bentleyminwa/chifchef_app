@@ -1,7 +1,8 @@
-import { RECOMMENDED_RECIPES } from '@/assets/data';
+import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from '@/assets/data';
 import PantryDetailListHeader from '@/features/pantry/components/detail/PantryDetailListHeader';
 import RecipeCard from '@/features/recipes/components/ui/RecipeCard';
 import type { Recipe } from '@/features/recipes/types';
+import { computeIngredientsMatch } from '@/features/recipes/utils/ingredientsMatch';
 import { COLORS } from '@/lib/config/theme';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -20,16 +21,17 @@ const PantryItemDetailsScreen = ({ item }: PantryItemDetailsScreenProps) => {
     [item],
   );
 
-  const renderItem = useCallback(
-    ({ item: recipe }: { item: Recipe }) => (
+  const renderItem = useCallback(({ item: recipe }: { item: Recipe }) => {
+    const match = computeIngredientsMatch(recipe, PANTRY_ITEMS);
+
+    return (
       <RecipeCard
         recipe={recipe}
-        ingredientsMatch={{ matched: 8, total: 10 }}
-        onPress={() => router.push('/recipes')}
+        ingredientsMatch={match.total > 0 ? match : undefined}
+        onPress={() => router.push(`/recipes/${recipe.id}`)}
       />
-    ),
-    [],
-  );
+    );
+  }, []);
 
   const keyExtractor = useCallback((recipe: Recipe) => recipe.id, []);
 

@@ -2,6 +2,12 @@ import { COLORS, FONTS } from '@/lib/config/theme';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { PANTRYITEM } from '../../types';
+import {
+  formatDaysLabel,
+  getDaysInPantry,
+  getDaysUntilExpiry,
+  isExpiringSoon,
+} from '../../utils/date';
 import DetailStat from '../ui/DetailStat';
 
 interface ItemDetailsSummaryProps {
@@ -9,6 +15,11 @@ interface ItemDetailsSummaryProps {
 }
 
 const ItemDetailsSummary = ({ item }: ItemDetailsSummaryProps) => {
+  const daysInPantry = getDaysInPantry(item?.created_at);
+  const daysUntilExpiry = getDaysUntilExpiry(item?.expiration_date);
+  const quantity = item?.quantity?.trim() || '—';
+  const showExpiryWarning = isExpiringSoon(daysUntilExpiry);
+
   return (
     <View style={styles.body}>
       <View style={styles.container}>
@@ -21,14 +32,17 @@ const ItemDetailsSummary = ({ item }: ItemDetailsSummaryProps) => {
         </View>
 
         <View style={styles.stats}>
-          <DetailStat label='In the pantry' value='3 days' />
+          <DetailStat
+            label='In the pantry'
+            value={formatDaysLabel(daysInPantry)}
+          />
           <DetailStat
             label='Expiring in'
-            value='2 days'
-            labelColor={COLORS.warning}
-            valueColor={COLORS.warning}
+            value={formatDaysLabel(daysUntilExpiry)}
+            labelColor={showExpiryWarning ? COLORS.warning : undefined}
+            valueColor={showExpiryWarning ? COLORS.warning : undefined}
           />
-          <DetailStat label='Quantity' value='500 g' />
+          <DetailStat label='Quantity' value={quantity} />
         </View>
       </View>
     </View>

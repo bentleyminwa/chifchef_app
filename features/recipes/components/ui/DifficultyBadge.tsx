@@ -1,7 +1,7 @@
 import { COLORS, FONTS } from '@/lib/config/theme';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import React from 'react';
-import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
 import type { Difficulty } from '../../types';
 import { getDifficultyColor } from '../../utils/difficulty';
 
@@ -9,7 +9,7 @@ interface DifficultyBadgeProps {
   difficulty: Difficulty;
   iconSize?: number;
   style?: ViewStyle;
-  textStyle?: object;
+  textStyle?: TextStyle;
 }
 
 const DifficultyBadge = ({

@@ -63,30 +63,33 @@ export const RECOMMENDED_RECIPES: Recipe[] = [
     image_url: food1,
     difficulty: 'Hard',
     meal_type: 'dinner',
+    ingredients: ['Beef', 'Tomato', 'Onion', 'Oil', 'Salt', 'Garlic', 'Ginger'],
   },
   {
     id: '2',
     title: 'Chapati & Stew',
     slug: 'chapati-stew',
-    description: '',
+    description: 'Chapati and stew served with a side of salad.',
     prep_time_minutes: 20,
     cook_time_minutes: 40,
     servings: 6,
     image_url: food2,
     difficulty: 'Easy',
     meal_type: 'dinner',
+    ingredients: ['Flour', 'Onion', 'Tomato', 'Beef', 'Carrots', 'Potatoes'],
   },
   {
     id: '3',
     title: 'Potato wedges and Shrimp',
-    slug: '',
-    description: '',
+    slug: 'potato-wedges-and-shrimp',
+    description: 'Potato wedges and shrimp served with a side of salad.',
     prep_time_minutes: 25,
     cook_time_minutes: 35,
     servings: 6,
     image_url: food3,
     difficulty: 'Medium',
     meal_type: 'lunch',
+    ingredients: ['Potato', 'Shrimp', 'Oil', 'Paprika', 'Salt'],
   },
   {
     id: '4',
@@ -99,6 +102,7 @@ export const RECOMMENDED_RECIPES: Recipe[] = [
     image_url: food4,
     difficulty: 'Easy',
     meal_type: 'breakfast',
+    ingredients: ['Noodles', 'Egg', 'Sausage', 'Oil', 'Soy sauce'],
   },
 ];
 
@@ -204,7 +208,7 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
 
 export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
   {
-    id: '1',
+    id: 'pairing-1',
     name: 'Broccoli',
     quantity: '3 stalks',
     image_url: broccoli,
@@ -214,7 +218,7 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
     category: 'Vegetable',
   },
   {
-    id: '2',
+    id: 'pairing-2',
     name: 'Kale',
     quantity: '1 bunch',
     image_url: kale,
@@ -224,7 +228,7 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
     category: 'Vegetable',
   },
   {
-    id: '3',
+    id: 'pairing-3',
     name: 'Potato',
     quantity: '4 large',
     image_url: potato,
@@ -234,7 +238,7 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
     category: 'Vegetable',
   },
   {
-    id: '4',
+    id: 'pairing-4',
     name: 'Yogurt',
     quantity: '500 ml',
     image_url: yogurt,
@@ -244,7 +248,7 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
     category: 'Dairy',
   },
   {
-    id: '5',
+    id: 'pairing-5',
     name: 'Cheese',
     quantity: '500 g',
     image_url: cheese,
@@ -254,7 +258,7 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
     category: 'Dairy',
   },
   {
-    id: '6',
+    id: 'pairing-6',
     name: 'Beetroot',
     quantity: '3',
     image_url: beetroot,
