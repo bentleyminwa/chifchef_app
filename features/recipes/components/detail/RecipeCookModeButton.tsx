@@ -1,6 +1,7 @@
+import { ILLUSTRATION_IMAGES } from '@/assets/data';
 import { COLORS, FONTS } from '@/lib/config/theme';
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
 
 interface RecipeCookModeButtonProps {
   onPress?: () => void;
@@ -9,9 +10,7 @@ interface RecipeCookModeButtonProps {
 const RecipeCookModeButton = ({ onPress }: RecipeCookModeButtonProps) => {
   return (
     <Pressable style={styles.button} onPress={onPress}>
-      {/* <View style={styles.iconCircle}>
-        <Feather name='play' size={18} color={COLORS.success} />
-      </View> */}
+      <Image source={ILLUSTRATION_IMAGES.cooking} style={styles.icon} />
       <Text style={styles.label}>Cook Mode</Text>
     </Pressable>
   );
@@ -25,23 +24,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.backgroundDark,
     borderRadius: 35,
     paddingVertical: 16,
-    marginTop: 20,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  iconCircle: {
+  icon: {
     width: 32,
     height: 32,
-    borderRadius: 16,
-    backgroundColor: COLORS.white,
-    alignItems: 'center',
-    justifyContent: 'center',
+    tintColor: COLORS.primary,
   },
   label: {
     fontSize: 16,
     fontFamily: FONTS.sandBold,
-    color: COLORS.white,
+    color: COLORS.primary,
+    textTransform: 'uppercase',
+    textAlign: 'center',
   },
 });
 

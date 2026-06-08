@@ -2,7 +2,6 @@ import { COLORS } from '@/lib/config/theme';
 import React from 'react';
 import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import type { Recipe } from '../../types';
-import RecipeDetailToolbar from './RecipeDetailToolbar';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const HERO_HEIGHT = SCREEN_WIDTH;
@@ -15,7 +14,6 @@ const RecipeHeroSection = ({ recipe }: RecipeHeroSectionProps) => {
   return (
     <View style={styles.container}>
       <Image source={recipe.image_url} style={styles.image} />
-      <RecipeDetailToolbar />
 
       <View style={styles.dots}>
         <View style={[styles.dot, styles.activeDot]} />
