@@ -1,7 +1,7 @@
 import { RECOMMENDED_RECIPES } from '@/assets/data';
+import DifficultyBadge from '@/features/recipes/components/ui/DifficultyBadge';
 import { COLORS, FONTS } from '@/lib/config/theme';
 import { Entypo } from '@expo/vector-icons';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
@@ -37,20 +37,12 @@ const RecommendedSection = () => {
             >
               {item.title}
             </Text>
-            <View>
-              <View style={styles.recommendedItemDifficulty}>
-                {item.difficulty === 'Easy' ? (
-                  <FontAwesome5 name='fire' size={11} color={COLORS.success} />
-                ) : item.difficulty === 'Medium' ? (
-                  <FontAwesome5 name='fire' size={11} color={COLORS.warning} />
-                ) : (
-                  <FontAwesome5 name='fire' size={11} color={COLORS.danger} />
-                )}
-                <Text style={styles.recommendedItemDifficultyText}>
-                  {item.difficulty}
-                </Text>
-              </View>
-            </View>
+            <DifficultyBadge
+              difficulty={item.difficulty}
+              iconSize={11}
+              style={styles.recommendedItemDifficulty}
+              textStyle={styles.recommendedItemDifficultyText}
+            />
           </View>
         )}
       />

@@ -4,11 +4,12 @@ import StorageFilter from '@/features/pantry/components/sections/StorageFilter';
 import type { STORAGEFILTER } from '@/features/pantry/types';
 import { COLORS } from '@/lib/config/theme';
 import { Feather } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PANTRY_ITEMS } from '../../assets/data';
+import { PANTRY_ITEMS } from '@/assets/data';
 
 export default function PantryScreen() {
   const [activeStorage, setActiveStorage] = useState<STORAGEFILTER>({
@@ -38,9 +39,8 @@ export default function PantryScreen() {
         // stickyHeaderIndices={[1]}
         ListHeaderComponent={
           <>
-            <PantryHeader key='pantry-header' />
+            <PantryHeader />
             <StorageFilter
-              key='storage-filter'
               activeStorage={activeStorage}
               setActiveStorage={setActiveStorage}
               getStorageCount={getStorageCount}
@@ -48,9 +48,14 @@ export default function PantryScreen() {
           </>
         }
         data={filteredPantryItems}
-        renderItem={({ item }) => {
-          return <PantryItem item={item} />;
-        }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            activeOpacity={0.92}
+            onPress={() => router.push(`/pantry/${item.id}`)}
+          >
+            <PantryItem item={item} />
+          </TouchableOpacity>
+        )}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         style={styles.pantryList}

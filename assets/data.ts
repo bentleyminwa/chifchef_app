@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native';
 import cookbook from './icons/cookbook.png';
 import refrigerator from './icons/fridge.png';
 import home from './icons/home.png';
@@ -26,7 +25,15 @@ import onion from '@/assets/images/ingredients/onion.png';
 import rice from '@/assets/images/ingredients/rice.png';
 import tomato from '@/assets/images/ingredients/tomato.png';
 
+import beetroot from '@/assets/images/ingredients/beetroot.png';
+import broccoli from '@/assets/images/ingredients/broccoli.png';
+import cheese from '@/assets/images/ingredients/cheese.png';
+import kale from '@/assets/images/ingredients/kale.png';
+import potato from '@/assets/images/ingredients/potato.png';
+import yogurt from '@/assets/images/ingredients/yogurt.png';
+
 import type { PANTRYITEM, STORAGEFILTER } from '@/features/pantry/types';
+import type { Recipe } from '@/features/recipes/types';
 
 export const TAB_ICONS = {
   home,
@@ -44,30 +51,7 @@ export const CATEGORY_IMAGES = {
   smoothie,
 };
 
-type MealType =
-  | 'breakfast'
-  | 'lunch'
-  | 'dinner'
-  | 'dessert'
-  | 'snacks'
-  | 'smoothie';
-
-type DifficultyType = 'Easy' | 'Medium' | 'Hard';
-
-type RecommendedRecipe = {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  prep_time_minutes: number;
-  cook_time_minutes: number;
-  servings: number;
-  image_url: ImageSourcePropType;
-  difficulty: DifficultyType;
-  meal_type: MealType;
-};
-
-export const RECOMMENDED_RECIPES: RecommendedRecipe[] = [
+export const RECOMMENDED_RECIPES: Recipe[] = [
   {
     id: '1',
     title: 'Beef Wet Fry',
@@ -117,8 +101,6 @@ export const RECOMMENDED_RECIPES: RecommendedRecipe[] = [
     meal_type: 'breakfast',
   },
 ];
-
-// PANTRY SPECIFIC DATA
 
 export const STORAGE_FILTER: STORAGEFILTER[] = [
   { label: 'All', value: 'all' },
@@ -216,6 +198,69 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     expiration_date: '2026-06-12',
     storage: 'fridge',
     created_at: '2026-06-07',
+    category: 'Vegetable',
+  },
+];
+
+export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
+  {
+    id: '1',
+    name: 'Broccoli',
+    quantity: '3 stalks',
+    image_url: broccoli,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: '2',
+    name: 'Kale',
+    quantity: '1 bunch',
+    image_url: kale,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: '3',
+    name: 'Potato',
+    quantity: '4 large',
+    image_url: potato,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: '4',
+    name: 'Yogurt',
+    quantity: '500 ml',
+    image_url: yogurt,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Dairy',
+  },
+  {
+    id: '5',
+    name: 'Cheese',
+    quantity: '500 g',
+    image_url: cheese,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Dairy',
+  },
+  {
+    id: '6',
+    name: 'Beetroot',
+    quantity: '3',
+    image_url: beetroot,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
     category: 'Vegetable',
   },
 ];
