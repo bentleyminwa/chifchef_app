@@ -8,7 +8,6 @@ export const COLORS = {
   tertiary: '#e84a5f',
   tertiaryDark: '#f77f00',
   tertiaryLight: '#fa8072',
-  // background: '#FFF8E7',
   background: '#FEFEFA',
   backgroundDark: '#1d1d1d',
   text: '#1B1B1B',
@@ -27,7 +26,7 @@ export const COLORS = {
   avatarBg: '#E2F2ED',
   avatarBorder: '#D0EBE3',
   success: '#50C878',
-  warning: '#F8DE7E',
+  warning: '#E0AB76',
   danger: '#ED2939',
 };
 

@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native';
 import cookbook from './icons/cookbook.png';
 import refrigerator from './icons/fridge.png';
 import home from './icons/home.png';
@@ -26,7 +25,15 @@ import onion from '@/assets/images/ingredients/onion.png';
 import rice from '@/assets/images/ingredients/rice.png';
 import tomato from '@/assets/images/ingredients/tomato.png';
 
+import beetroot from '@/assets/images/ingredients/beetroot.png';
+import broccoli from '@/assets/images/ingredients/broccoli.png';
+import cheese from '@/assets/images/ingredients/cheese.png';
+import kale from '@/assets/images/ingredients/kale.png';
+import potato from '@/assets/images/ingredients/potato.png';
+import yogurt from '@/assets/images/ingredients/yogurt.png';
+
 import type { PANTRYITEM, STORAGEFILTER } from '@/features/pantry/types';
+import type { Recipe } from '@/features/recipes/types';
 
 export const TAB_ICONS = {
   home,
@@ -44,81 +51,131 @@ export const CATEGORY_IMAGES = {
   smoothie,
 };
 
-type MealType =
-  | 'breakfast'
-  | 'lunch'
-  | 'dinner'
-  | 'dessert'
-  | 'snacks'
-  | 'smoothie';
-
-type DifficultyType = 'Easy' | 'Medium' | 'Hard';
-
-type RecommendedRecipe = {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  prep_time_minutes: number;
-  cook_time_minutes: number;
-  servings: number;
-  image_url: ImageSourcePropType;
-  difficulty: DifficultyType;
-  meal_type: MealType;
-};
-
-export const RECOMMENDED_RECIPES: RecommendedRecipe[] = [
+export const RECOMMENDED_RECIPES: Recipe[] = [
   {
     id: '1',
     title: 'Beef Wet Fry',
     slug: 'beef-wet-fry',
-    description: 'Tender beef simmered in a rich tomato-onion gravy.',
+    description:
+      'Tender beef simmered in a rich tomato-onion gravy. A hearty Kenyan classic perfect for sharing with family.',
     prep_time_minutes: 15,
     cook_time_minutes: 30,
     servings: 4,
     image_url: food1,
     difficulty: 'Hard',
     meal_type: 'dinner',
+    rating: 4.7,
+    author: 'Chef Amina',
+    calories: 480,
+    ingredients: [
+      { name: 'Beef', quantity: '500 g', image_url: beef },
+      { name: 'Tomato', quantity: '3 large', image_url: tomato },
+      { name: 'Onion', quantity: '2 medium', image_url: onion },
+      { name: 'Oil', quantity: '3 tbsp' },
+      { name: 'Salt', quantity: '1 tsp' },
+      { name: 'Garlic', quantity: '4 cloves' },
+      { name: 'Ginger', quantity: '1 inch' },
+    ],
+    instructions: [
+      'Cut beef into bite-sized pieces and season with salt.',
+      'Heat oil in a pan and brown the beef on all sides.',
+      'Add diced onion, garlic, and ginger; cook until fragrant.',
+      'Stir in chopped tomatoes and simmer until the gravy thickens.',
+      'Adjust seasoning and serve hot with rice or chapati.',
+    ],
   },
   {
     id: '2',
     title: 'Chapati & Stew',
     slug: 'chapati-stew',
-    description: '',
+    description:
+      'Soft chapati paired with a comforting beef and vegetable stew. Ideal for a cozy dinner.',
     prep_time_minutes: 20,
     cook_time_minutes: 40,
     servings: 6,
     image_url: food2,
     difficulty: 'Easy',
     meal_type: 'dinner',
+    rating: 4.5,
+    author: 'Rachel William',
+    calories: 420,
+    ingredients: [
+      { name: 'Flour', quantity: '400 g' },
+      { name: 'Onion', quantity: '2 medium', image_url: onion },
+      { name: 'Tomato', quantity: '2 large', image_url: tomato },
+      { name: 'Beef', quantity: '400 g', image_url: beef },
+      { name: 'Carrots', quantity: '2 medium' },
+      { name: 'Potatoes', quantity: '3 large', image_url: potato },
+    ],
+    instructions: [
+      'Prepare chapati dough with flour, water, and a pinch of salt; rest for 20 minutes.',
+      'Brown beef with onion and tomato in a stew pot.',
+      'Add carrots and potatoes with enough water to cover.',
+      'Simmer stew for 30 minutes until vegetables are tender.',
+      'Roll and cook chapatis on a hot pan until lightly browned.',
+      'Serve stew ladled over torn chapati.',
+    ],
   },
   {
     id: '3',
     title: 'Potato wedges and Shrimp',
-    slug: '',
-    description: '',
+    slug: 'potato-wedges-and-shrimp',
+    description:
+      'Crispy potato wedges with seasoned shrimp. A satisfying lunch with a fresh side salad.',
     prep_time_minutes: 25,
     cook_time_minutes: 35,
     servings: 6,
     image_url: food3,
     difficulty: 'Medium',
     meal_type: 'lunch',
+    rating: 4.3,
+    author: 'James Ochieng',
+    calories: 390,
+    ingredients: [
+      { name: 'Potato', quantity: '4 large', image_url: potato },
+      { name: 'Shrimp', quantity: '300 g' },
+      { name: 'Oil', quantity: '4 tbsp' },
+      { name: 'Paprika', quantity: '1 tsp' },
+      { name: 'Salt', quantity: '1 tsp' },
+    ],
+    instructions: [
+      'Cut potatoes into wedges and toss with oil, paprika, and salt.',
+      'Bake wedges at 200°C for 25 minutes, turning halfway.',
+      'Season shrimp and sauté in a hot pan for 3–4 minutes per side.',
+      'Plate wedges with shrimp and serve immediately.',
+    ],
   },
   {
     id: '4',
     title: 'Noodles with Egg & Sausage',
     slug: 'noodles-with-egg-sausage',
-    description: 'A simple and quick noodle dish with egg and sausage.',
+    description:
+      'A simple and quick noodle dish with egg and sausage. Perfect for a fast breakfast.',
     prep_time_minutes: 10,
     cook_time_minutes: 10,
     servings: 2,
     image_url: food4,
     difficulty: 'Easy',
     meal_type: 'breakfast',
+    rating: 4.6,
+    author: 'Maria Santos',
+    calories: 512,
+    ingredients: [
+      { name: 'Noodles', quantity: '200 g' },
+      { name: 'Egg', quantity: '2 large', image_url: eggs },
+      { name: 'Sausage', quantity: '2 links' },
+      { name: 'Oil', quantity: '2 tbsp' },
+      { name: 'Soy sauce', quantity: '2 tbsp' },
+    ],
+    instructions: [
+      'Boil noodles according to package directions; drain and set aside.',
+      'Slice sausage and fry in oil until browned.',
+      'Scramble eggs in the same pan.',
+      'Toss noodles, sausage, and eggs with soy sauce.',
+      'Serve warm straight from the pan.',
+    ],
   },
 ];
-
-// PANTRY SPECIFIC DATA
 
 export const STORAGE_FILTER: STORAGEFILTER[] = [
   { label: 'All', value: 'all' },
@@ -216,6 +273,69 @@ export const PANTRY_ITEMS: PANTRYITEM[] = [
     expiration_date: '2026-06-12',
     storage: 'fridge',
     created_at: '2026-06-07',
+    category: 'Vegetable',
+  },
+];
+
+export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
+  {
+    id: 'pairing-1',
+    name: 'Broccoli',
+    quantity: '3 stalks',
+    image_url: broccoli,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: 'pairing-2',
+    name: 'Kale',
+    quantity: '1 bunch',
+    image_url: kale,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: 'pairing-3',
+    name: 'Potato',
+    quantity: '4 large',
+    image_url: potato,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Vegetable',
+  },
+  {
+    id: 'pairing-4',
+    name: 'Yogurt',
+    quantity: '500 ml',
+    image_url: yogurt,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Dairy',
+  },
+  {
+    id: 'pairing-5',
+    name: 'Cheese',
+    quantity: '500 g',
+    image_url: cheese,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
+    category: 'Dairy',
+  },
+  {
+    id: 'pairing-6',
+    name: 'Beetroot',
+    quantity: '3',
+    image_url: beetroot,
+    expiration_date: '2026-06-13',
+    storage: 'fridge',
+    created_at: '2026-06-01',
     category: 'Vegetable',
   },
 ];
