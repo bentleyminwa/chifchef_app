@@ -5,7 +5,7 @@ import type { Recipe } from '../../types';
 import RecipeDetailToolbar from './RecipeDetailToolbar';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const HERO_HEIGHT = SCREEN_WIDTH * 0.85;
+const HERO_HEIGHT = SCREEN_WIDTH;
 
 interface RecipeHeroSectionProps {
   recipe: Recipe;

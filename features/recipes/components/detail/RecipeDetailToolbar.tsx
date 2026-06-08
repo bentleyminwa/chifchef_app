@@ -1,5 +1,5 @@
 import { COLORS } from '@/lib/config/theme';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Fontisto } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -15,7 +15,7 @@ const RecipeDetailToolbar = () => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.iconBtn}>
-        <Feather name='bookmark' size={22} color={COLORS.text} />
+        <Fontisto name='heart-alt' size={20} color={COLORS.text} />
       </TouchableOpacity>
     </View>
   );
