@@ -15,6 +15,12 @@ export interface IngredientsMatch {
   total: number;
 }
 
+export interface RecipeIngredient {
+  name: string;
+  quantity: string;
+  image_url?: ImageSourcePropType;
+}
+
 export interface Recipe {
   id: string;
   title: string;
@@ -26,5 +32,9 @@ export interface Recipe {
   image_url: ImageSourcePropType;
   difficulty: Difficulty;
   meal_type: MealType;
-  ingredients: string[];
+  rating: number;
+  author: string;
+  calories: number;
+  ingredients: RecipeIngredient[];
+  instructions: string[];
 }

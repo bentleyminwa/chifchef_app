@@ -1,8 +1,8 @@
 import type { PANTRYITEM } from '@/features/pantry/types';
 import type { IngredientsMatch, Recipe } from '../types';
 
-function ingredientInPantry(ingredient: string, pantry: PANTRYITEM[]): boolean {
-  const needle = ingredient.trim().toLowerCase();
+function ingredientInPantry(name: string, pantry: PANTRYITEM[]): boolean {
+  const needle = name.trim().toLowerCase();
   if (!needle) return false;
 
   return pantry.some((item) => {
@@ -17,7 +17,7 @@ export function computeIngredientsMatch(
 ): IngredientsMatch {
   const required = recipe.ingredients ?? [];
   const matched = required.filter((ingredient) =>
-    ingredientInPantry(ingredient, pantry),
+    ingredientInPantry(ingredient.name, pantry),
   ).length;
 
   return { matched, total: required.length };
