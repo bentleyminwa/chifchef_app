@@ -1,13 +1,13 @@
-import { COLORS, FONTS } from '@/lib/config/theme';
-import { Feather } from '@expo/vector-icons';
-import React from 'react';
+import { COLORS, FONTS } from "@/lib/config/theme";
+import { Feather } from "@expo/vector-icons";
+import React from "react";
 import {
   Pressable,
   StyleSheet,
   TextInput,
   View,
   ViewStyle,
-} from 'react-native';
+} from "react-native";
 
 interface SearchBarProps {
   value?: string;
@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
   onFilterPress,
-  placeholder = 'e.g. beef wet fry',
+  placeholder = "e.g. beef wet fry",
   style,
 }) => {
   return (
@@ -49,9 +49,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: COLORS.white,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.grayLight,
     borderRadius: 50,
     height: 54,
     paddingHorizontal: 16,
@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontFamily: FONTS.sandRegular,
-    fontWeight: 'normal',
-    fontStyle: 'normal',
+    fontWeight: "normal",
+    fontStyle: "normal",
     fontSize: 15,
     color: COLORS.text,
-    height: '100%',
+    height: "100%",
     padding: 0,
   },
   separator: {
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     padding: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

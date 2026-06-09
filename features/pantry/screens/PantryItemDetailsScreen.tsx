@@ -1,4 +1,5 @@
 import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from '@/assets/data';
+import ItemDetailsToolbar from '@/features/pantry/components/detail/ItemDetailsToolbar';
 import PantryDetailListHeader from '@/features/pantry/components/detail/PantryDetailListHeader';
 import RecipeCard from '@/features/recipes/components/ui/RecipeCard';
 import type { Recipe } from '@/features/recipes/types';
@@ -7,15 +8,21 @@ import { COLORS } from '@/lib/config/theme';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { PANTRYITEM } from '../types';
 
 interface PantryItemDetailsScreenProps {
   item: PANTRYITEM;
 }
 
+const TOOLBAR_TOP_GAP = 12;
+const TOOLBAR_HEIGHT = 40;
+const TOOLBAR_CONTENT_GAP = 16;
+
 const PantryItemDetailsScreen = ({ item }: PantryItemDetailsScreenProps) => {
+  const insets = useSafeAreaInsets();
+
   const renderHeader = useCallback(
     () => <PantryDetailListHeader item={item} />,
     [item],
@@ -36,7 +43,7 @@ const PantryItemDetailsScreen = ({ item }: PantryItemDetailsScreenProps) => {
   const keyExtractor = useCallback((recipe: Recipe) => recipe.id, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style='dark' />
 
       <FlatList
@@ -45,9 +52,18 @@ const PantryItemDetailsScreen = ({ item }: PantryItemDetailsScreenProps) => {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.listContent}
+        contentContainerStyle={[
+          styles.listContent,
+          {
+            paddingTop:
+              insets.top + TOOLBAR_TOP_GAP + TOOLBAR_HEIGHT + TOOLBAR_CONTENT_GAP,
+            paddingBottom: insets.bottom + 32,
+          },
+        ]}
       />
-    </SafeAreaView>
+
+      <ItemDetailsToolbar top={insets.top + TOOLBAR_TOP_GAP} />
+    </View>
   );
 };
 
@@ -55,11 +71,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.background,
-    paddingHorizontal: 20,
   },
   listContent: {
     gap: 20,
-    paddingBottom: 32,
+    paddingHorizontal: 20,
   },
 });
 

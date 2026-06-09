@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { PANTRYITEM } from '../../types';
 import ItemDetailsSummary from './ItemDetailsSummary';
-import ItemDetailsToolbar from './ItemDetailsToolbar';
 import PairingSection from './PairingSection';
 
 interface PantryDetailListHeaderProps {
@@ -13,7 +12,6 @@ interface PantryDetailListHeaderProps {
 const PantryDetailListHeader = ({ item }: PantryDetailListHeaderProps) => {
   return (
     <View>
-      <ItemDetailsToolbar />
       <ItemDetailsSummary item={item} />
       <PairingSection />
       <Text style={styles.sectionTitle}>Or cook with what you have</Text>

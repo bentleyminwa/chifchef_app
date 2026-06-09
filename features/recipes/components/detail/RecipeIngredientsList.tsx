@@ -1,7 +1,7 @@
-import { COLORS, FONTS } from '@/lib/config/theme';
-import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import type { RecipeIngredient } from '../../types';
+import { COLORS, FONTS } from "@/lib/config/theme";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import type { RecipeIngredient } from "../../types";
 
 interface RecipeIngredientsListProps {
   ingredients: RecipeIngredient[];
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     gap: 0,
   },
   row: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
     paddingVertical: 12,
   },
@@ -56,15 +56,17 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     backgroundColor: COLORS.card,
     borderWidth: 1,
     borderColor: COLORS.grayLight,
+    alignItems: "center",
+    justifyContent: "center",
   },
   thumbnailImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
+    width: 32,
+    height: 32,
+    resizeMode: "contain",
   },
   thumbnailPlaceholder: {
     flex: 1,
