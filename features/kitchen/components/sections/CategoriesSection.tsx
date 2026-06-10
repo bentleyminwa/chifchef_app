@@ -59,7 +59,7 @@ const CategoriesSection = () => {
                 <Link
                   key={category.id}
                   href={{
-                    pathname: '/recipes',
+                    pathname: '/recipes/[category]' as any,
                     params: { category: category.id },
                   }}
                   asChild
