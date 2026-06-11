@@ -1,13 +1,7 @@
 import { COLORS, FONTS } from "@/lib/config/theme";
 import { Feather } from "@expo/vector-icons";
 import React from "react";
-import {
-  Pressable,
-  StyleSheet,
-  TextInput,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
 
 interface SearchBarProps {
   value?: string;
@@ -20,7 +14,6 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
-  onFilterPress,
   placeholder = "e.g. beef wet fry",
   style,
 }) => {
@@ -39,10 +32,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={placeholder}
         placeholderTextColor={COLORS.placeholder}
       />
-      <View style={styles.separator} />
-      <Pressable onPress={onFilterPress} style={styles.filterButton}>
-        <Feather name='sliders' size={20} color={COLORS.textLight} />
-      </Pressable>
     </View>
   );
 };
@@ -56,7 +45,7 @@ const styles = StyleSheet.create({
     height: 54,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: COLORS.borderLight,
+    borderColor: COLORS.border,
     marginVertical: 16,
     shadowColor: COLORS.grayLight,
     shadowOffset: { width: 0, height: 1 },
@@ -69,7 +58,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontFamily: FONTS.sandRegular,
+    fontFamily: FONTS.sandSemiBold,
     fontWeight: "normal",
     fontStyle: "normal",
     fontSize: 15,
