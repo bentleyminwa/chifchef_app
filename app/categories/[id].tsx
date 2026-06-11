@@ -1,16 +1,15 @@
-import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from "@/assets/data";
-import RecipeCard from "@/features/recipes/components/ui/RecipeCard";
-import { computeIngredientsMatch } from "@/features/recipes/utils/ingredientsMatch";
-import { CATEGORIES } from "@/lib/config/constants";
-import { COLORS, FONTS } from "@/lib/config/theme";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from '@/assets/data';
+import RecipeCard from '@/features/recipes/components/ui/RecipeCard';
+import { computeIngredientsMatch } from '@/features/recipes/utils/ingredientsMatch';
+import { CATEGORIES } from '@/lib/config/constants';
+import { COLORS, FONTS } from '@/lib/config/theme';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CategoryScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
-  console.log("Category ID:", id);
   const categoryId = Array.isArray(id) ? id[0] : id;
 
   const categoryData = CATEGORIES.find((c) => c.id === categoryId);
@@ -32,16 +31,7 @@ export default function CategoryScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Image source={categoryData.icon} style={styles.categoryIcon} />
-          <Text style={styles.categoryName}>{categoryData.title}</Text>
-        </View>
-        <Text style={styles.recipeCount}>
-          {filteredRecipes.length}{" "}
-          {filteredRecipes.length === 1 ? "recipe" : "recipes"}
-        </Text>
-      </View>
+      <View style={styles.header}></View>
 
       {filteredRecipes.length === 0 ? (
         <View style={styles.emptyState}>
@@ -77,17 +67,17 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.borderLight,
   },
   headerContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
     flex: 1,
   },
@@ -112,8 +102,8 @@ const styles = StyleSheet.create({
   },
   emptyState: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   emptyStateText: {
     fontFamily: FONTS.sandMedium,
@@ -122,8 +112,8 @@ const styles = StyleSheet.create({
   },
   notFound: {
     flex: 1,
-    textAlignVertical: "center",
-    textAlign: "center",
+    textAlignVertical: 'center',
+    textAlign: 'center',
     fontFamily: FONTS.sandMedium,
     fontSize: 16,
     color: COLORS.textLight,

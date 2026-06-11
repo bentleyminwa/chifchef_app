@@ -1,6 +1,6 @@
 import { COLORS } from "@/lib/config/theme";
+import BackButton from "@/shared/components/buttons/BackButton";
 import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -11,9 +11,7 @@ interface ItemDetailsToolbarProps {
 const ItemDetailsToolbar = ({ top = 0 }: ItemDetailsToolbarProps) => {
   return (
     <View style={[styles.header, { top }]}>
-      <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
-        <Feather name='chevron-left' size={24} color={COLORS.text} />
-      </TouchableOpacity>
+      <BackButton />
 
       <View style={styles.actionBtns}>
         <TouchableOpacity>
