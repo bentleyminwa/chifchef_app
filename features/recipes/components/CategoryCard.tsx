@@ -1,11 +1,18 @@
-import { FONTS } from '@/lib/config/theme';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { FONTS } from "@/lib/config/theme";
+import {
+  Image,
+  ImageSourcePropType,
+  Pressable,
+  StyleSheet,
+  Text,
+} from "react-native";
 
 interface CategoryCardProps {
   title: string;
   description: string;
   backgroundColor: string;
   textColor: string;
+  icon: ImageSourcePropType;
   onPress: () => void;
 }
 
@@ -14,6 +21,7 @@ const CategoryCard = ({
   description,
   backgroundColor,
   textColor,
+  icon,
   onPress,
 }: CategoryCardProps) => {
   return (
@@ -25,6 +33,7 @@ const CategoryCard = ({
         pressed && styles.pressed,
       ]}
     >
+      <Image source={icon} style={styles.icon} />
       <Text style={[styles.title, { color: textColor }]}>{title}</Text>
       <Text style={[styles.description, { color: textColor, opacity: 0.7 }]}>
         {description}
@@ -39,10 +48,10 @@ const styles = StyleSheet.create({
     minHeight: 120,
     borderRadius: 16,
     padding: 16,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
     marginHorizontal: 8,
     marginVertical: 8,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -60,6 +69,11 @@ const styles = StyleSheet.create({
   description: {
     fontFamily: FONTS.sandRegular,
     fontSize: 12,
+  },
+  icon: {
+    width: 32,
+    height: 32,
+    marginBottom: 8,
   },
 });
 

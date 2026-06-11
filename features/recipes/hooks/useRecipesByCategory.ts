@@ -1,20 +1,21 @@
-import { RECOMMENDED_RECIPES } from '@/assets/data';
-import { Recipe } from '@/features/recipes/types';
+import { RECOMMENDED_RECIPES } from "@/assets/data";
+import { Recipe } from "@/features/recipes/types";
 
 export const useRecipesByCategory = () => {
   const getRecipesByMealType = (mealType: string): Recipe[] => {
-    return RECOMMENDED_RECIPES.filter((recipe) => recipe.meal_type === mealType);
+    return RECOMMENDED_RECIPES.filter(
+      (recipe) => recipe.meal_type === mealType,
+    );
   };
 
   const getCookFromPantryRecipes = (): Recipe[] => {
-    // In a real app, this would fetch recipes based on pantry items
-    // For now, return a subset of recipes
+    // fetch recipes based on pantry items - for now, return a static list of recipes that can be cooked from pantry items
     return RECOMMENDED_RECIPES.slice(0, 3);
   };
 
   const getQuickMeals = (): Recipe[] => {
     return RECOMMENDED_RECIPES.filter(
-      (recipe) => recipe.prep_time_minutes + recipe.cook_time_minutes <= 30
+      (recipe) => recipe.prep_time_minutes + recipe.cook_time_minutes <= 30,
     );
   };
 
@@ -26,10 +27,10 @@ export const useRecipesByCategory = () => {
   const organizeRecipes = () => {
     return {
       cookFromPantry: getCookFromPantryRecipes(),
-      breakfast: getRecipesByMealType('breakfast'),
-      lunch: getRecipesByMealType('lunch'),
-      dinner: getRecipesByMealType('dinner'),
-      dessert: getRecipesByMealType('dessert'),
+      breakfast: getRecipesByMealType("breakfast"),
+      lunch: getRecipesByMealType("lunch"),
+      dinner: getRecipesByMealType("dinner"),
+      dessert: getRecipesByMealType("dessert"),
       quickMeals: getQuickMeals(),
       healthy: getHealthyRecipes(),
     };

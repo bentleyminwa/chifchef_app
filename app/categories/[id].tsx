@@ -1,17 +1,17 @@
-import { RECOMMENDED_RECIPES, PANTRY_ITEMS } from "@/assets/data";
+import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from "@/assets/data";
+import RecipeCard from "@/features/recipes/components/ui/RecipeCard";
+import { computeIngredientsMatch } from "@/features/recipes/utils/ingredientsMatch";
 import { CATEGORIES } from "@/lib/config/constants";
 import { COLORS, FONTS } from "@/lib/config/theme";
-import { computeIngredientsMatch } from "@/features/recipes/utils/ingredientsMatch";
-import RecipeCard from "@/features/recipes/components/ui/RecipeCard";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CategoryScreen() {
   const router = useRouter();
-  const { category } = useLocalSearchParams();
-  const categoryId = Array.isArray(category) ? category[0] : category;
+  const { id } = useLocalSearchParams();
+  console.log("Category ID:", id);
+  const categoryId = Array.isArray(id) ? id[0] : id;
 
   const categoryData = CATEGORIES.find((c) => c.id === categoryId);
   const filteredRecipes = RECOMMENDED_RECIPES.filter(
@@ -35,7 +35,7 @@ export default function CategoryScreen() {
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Image source={categoryData.icon} style={styles.categoryIcon} />
-          <Text style={styles.categoryName}>{categoryData.name}</Text>
+          <Text style={styles.categoryName}>{categoryData.title}</Text>
         </View>
         <Text style={styles.recipeCount}>
           {filteredRecipes.length}{" "}
