@@ -1,6 +1,7 @@
 import { COLORS, FONTS } from '@/lib/config/theme';
+import LikeButton from '@/shared/components/buttons/LikeButton';
 import { Octicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { IngredientsMatch, Recipe } from '../../types';
 import DifficultyBadge from './DifficultyBadge';
@@ -12,16 +13,23 @@ interface RecipeCardProps {
 }
 
 const RecipeCard = ({ recipe, ingredientsMatch, onPress }: RecipeCardProps) => {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+  };
+
   return (
     <TouchableOpacity activeOpacity={0.95} onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.imageContainer}>
           <Image source={recipe.image_url} style={styles.image} />
-          <Octicons
-            name='heart'
-            size={16}
-            color={COLORS.text}
+          <LikeButton
+            size={{ width: 28, height: 28 }}
+            iconSize={20}
             style={styles.heartIcon}
+            liked={isLiked}
+            onPress={handleLike}
           />
         </View>
 
@@ -76,9 +84,6 @@ const styles = StyleSheet.create({
     left: 8,
     zIndex: 10,
     elevation: 10,
-    backgroundColor: COLORS.grayLight,
-    padding: 4,
-    borderRadius: 12,
   },
   infoContainer: {
     flex: 1,
