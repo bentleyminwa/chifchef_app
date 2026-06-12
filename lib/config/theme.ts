@@ -21,7 +21,7 @@ export const COLORS = {
   border: "#e0e0e0",
   borderLight: "#FFFAFA",
   borderDark: "#2C2C2E",
-  card: "#FFFAFA",
+  card: "#F7F7F7",
   placeholder: "#A0A0A5",
   avatarBg: "#E2F2ED",
   avatarBorder: "#D0EBE3",

@@ -38,6 +38,8 @@ import type { Recipe } from "@/features/recipes/types";
 
 import cooking from "@/assets/icons/cooking.png";
 
+import profile from "@/assets/images/profile/profile.jpg";
+
 export const TAB_ICONS = {
   home,
   refrigerator,
@@ -346,4 +348,5 @@ export const PAIRING_INGREDIENTS: PANTRYITEM[] = [
 
 export const ILLUSTRATION_IMAGES = {
   cooking,
+  profile,
 };
