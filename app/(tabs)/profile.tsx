@@ -3,30 +3,33 @@ import ProfileSection, {
   type ProfileItem,
 } from "@/features/profile/components/ProfileSection";
 import { COLORS } from "@/lib/config/theme";
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProfileScreen() {
+  const router = useRouter();
+
   const generalItems: ProfileItem[] = [
     {
       id: "account",
       icon: "user",
       label: "My Account",
-      onPress: () => console.log("My Account pressed"),
+      onPress: () => router.push("/profile/account"),
     },
     {
       id: "favorites",
       icon: "heart",
       label: "Favourite Recipes",
-      onPress: () => console.log("Favourite Recipes pressed"),
+      onPress: () => router.push("/profile/favorites"),
     },
     {
       id: "cookbook",
       icon: "book-open",
       label: "CookBook",
-      onPress: () => console.log("CookBook pressed"),
+      onPress: () => router.push("/profile/cookbook"),
     },
   ];
 
