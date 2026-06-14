@@ -1,20 +1,27 @@
-import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from '@/assets/data';
-import RecipeCard from '@/features/recipes/components/ui/RecipeCard';
-import { computeIngredientsMatch } from '@/features/recipes/utils/ingredientsMatch';
-import { COLORS, FONTS } from '@/lib/config/theme';
-import BackButton from '@/shared/components/buttons/BackButton';
-import SearchButton from '@/shared/components/buttons/SearchButton';
-import { Feather } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { PANTRY_ITEMS, RECOMMENDED_RECIPES } from "@/assets/data";
+import RecipeCard from "@/features/recipes/components/ui/RecipeCard";
+import { computeIngredientsMatch } from "@/features/recipes/utils/ingredientsMatch";
+import { COLORS, FONTS } from "@/lib/config/theme";
+import BackButton from "@/shared/components/buttons/BackButton";
+import SearchButton from "@/shared/components/buttons/SearchButton";
+import { Feather } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FavouriteRecipesScreen() {
   const router = useRouter();
-  const [favoriteIds] = useState<string[]>(['1', '3', '6', '8']);
+  const [favoriteIds] = useState<string[]>(["1", "3", "6", "8"]);
   const [isSearching, setIsSearching] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Get only the favorited recipes
   const favoriteRecipes = RECOMMENDED_RECIPES.filter((recipe) =>
@@ -24,7 +31,7 @@ export default function FavouriteRecipesScreen() {
   // Apply search query filter
   const displayedRecipes = favoriteRecipes.filter((recipe) => {
     if (!searchQuery.trim()) return true;
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
     return (
       recipe.title.toLowerCase().includes(query) ||
       recipe.description.toLowerCase().includes(query)
@@ -43,7 +50,7 @@ export default function FavouriteRecipesScreen() {
             activeOpacity={0.8}
             onPress={() => {
               setIsSearching(false);
-              setSearchQuery('');
+              setSearchQuery("");
             }}
             style={styles.iconButton}
           >
@@ -60,7 +67,7 @@ export default function FavouriteRecipesScreen() {
           {searchQuery.length > 0 && (
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => setSearchQuery('')}
+              onPress={() => setSearchQuery("")}
               style={styles.iconButton}
             >
               <Feather name='x' size={20} color={COLORS.textMuted} />
@@ -82,17 +89,28 @@ export default function FavouriteRecipesScreen() {
         ListEmptyComponent={
           favoriteRecipes.length === 0 ? (
             <View style={styles.emptyState}>
-              <Feather name='heart' size={48} color={COLORS.textLight} style={styles.emptyIcon} />
+              <Feather
+                name='heart'
+                size={48}
+                color={COLORS.textLight}
+                style={styles.emptyIcon}
+              />
               <Text style={styles.emptyStateText}>
                 No favourite recipes yet
               </Text>
               <Text style={styles.emptyStateSubtext}>
-                Tap the heart icon on any recipe to save it to your favourites list.
+                Tap the heart icon on any recipe to save it to your favourites
+                list.
               </Text>
             </View>
           ) : (
             <View style={styles.emptyState}>
-              <Feather name='search' size={48} color={COLORS.textLight} style={styles.emptyIcon} />
+              <Feather
+                name='search'
+                size={48}
+                color={COLORS.textLight}
+                style={styles.emptyIcon}
+              />
               <Text style={styles.emptyStateText}>
                 No matching recipes found
               </Text>
@@ -124,9 +142,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   toolbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
@@ -148,8 +166,8 @@ const styles = StyleSheet.create({
   iconButton: {
     width: 40,
     height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   listContent: {
     paddingHorizontal: 20,
@@ -157,8 +175,8 @@ const styles = StyleSheet.create({
   },
   emptyState: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingVertical: 120,
     paddingHorizontal: 40,
   },
@@ -170,14 +188,14 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.sandBold,
     fontSize: 18,
     color: COLORS.textMuted,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 8,
   },
   emptyStateSubtext: {
     fontFamily: FONTS.sandRegular,
     fontSize: 14,
     color: COLORS.textLight,
-    textAlign: 'center',
+    textAlign: "center",
     lineHeight: 20,
   },
 });
